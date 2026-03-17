@@ -1,0 +1,1220 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Seclore × Moreland Associates | Fractional Marketing Partnership v2</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet" />
+
+  <style>
+    /* ─── Seclore Design Tokens ─────────────────────────────────── */
+    :root {
+      --purple:        #4A28C3;
+      --purple-light:  #6443D8;
+      --purple-xlight: #7C5CE8;
+      --red:           #E6274F;
+      --red-dark:      #AD0038;
+      --deep-space:    #231325;
+      --dark:          #0C0D0F;
+      --dark-gray:     #2D2D2D;
+      --mid-gray:      #606777;
+      --gray-03:       #C1C4C9;
+      --gray-02:       #DEE0E3;
+      --gray-01:       #F2F3F4;
+      --light-gray:    #F9F9F9;
+      --white:         #FFFFFF;
+
+      --grad-purple:     linear-gradient(180deg, #6443D8 0%, #4A28C3 100%);
+      --grad-dark:       linear-gradient(135deg, #3D404D 0%, #0C0D0F 100%);
+      --grad-hero:       linear-gradient(135deg, #231325 0%, #1A0F3A 60%, #0C0D0F 100%);
+      --grad-card-hover: linear-gradient(135deg, #F5EBF9 0%, #EEE8FF 100%);
+
+      --shadow-sm:  0px 4px 8px rgba(0,0,0,0.08);
+      --shadow-md:  0px 8px 24px rgba(0,0,0,0.12);
+      --shadow-lg:  0px 16px 48px rgba(0,0,0,0.18);
+
+      --radius:    1.25rem;
+      --radius-sm: 0.75rem;
+      --radius-pill: 9999px;
+
+      --max-w: 72rem;
+      --max-w-wide: 88rem;
+    }
+
+    *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+    html { scroll-behavior: smooth; }
+    body {
+      font-family: 'Inter', sans-serif;
+      background: var(--white);
+      color: var(--dark-gray);
+      -webkit-font-smoothing: antialiased;
+      -moz-osx-font-smoothing: grayscale;
+      overflow-x: hidden;
+    }
+
+    /* ─── Typography ─────────────────────────────────────────────── */
+    h1 { font-size: clamp(2.1rem, 4vw, 3.25rem); font-weight: 800; line-height: 1.1; letter-spacing: -0.03em; }
+    h2 { font-size: clamp(1.8rem, 3.5vw, 2.75rem); font-weight: 700; line-height: 1.15; letter-spacing: -0.02em; }
+    h3 { font-size: clamp(1.1rem, 2vw, 1.4rem); font-weight: 600; line-height: 1.3; }
+    h4 { font-size: 1.05rem; font-weight: 600; line-height: 1.4; }
+    p  { font-size: 1.05rem; line-height: 1.7; color: var(--mid-gray); }
+    a  { color: inherit; text-decoration: none; }
+
+    .label {
+      font-size: 0.75rem;
+      font-weight: 700;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+    }
+
+    /* ─── Layout ───────────────────────────────────────────────── */
+    .container      { max-width: var(--max-w);      margin: 0 auto; padding: 0 2rem; }
+    .container-wide { max-width: var(--max-w-wide); margin: 0 auto; padding: 0 2rem; }
+    .section        { padding: 6rem 0; }
+    .section-sm     { padding: 4rem 0; }
+    .grid-2  { display: grid; grid-template-columns: 1fr 1fr;        gap: 2rem; }
+    .grid-3  { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1.5rem; }
+    .grid-4  { display: grid; grid-template-columns: repeat(4, 1fr); gap: 1.25rem; }
+    .flex    { display: flex; }
+    .items-center { align-items: center; }
+    .gap-1 { gap: 1rem; }
+    .gap-2 { gap: 2rem; }
+    .text-center { text-align: center; }
+    .text-white  { color: var(--white) !important; }
+    .text-purple { color: var(--purple); }
+    .text-red    { color: var(--red); }
+
+    /* ─── Buttons ──────────────────────────────────────────────── */
+    .btn {
+      display: inline-flex; align-items: center; gap: 0.5rem;
+      padding: 0.85rem 1.75rem; border-radius: var(--radius-pill);
+      font-size: 0.95rem; font-weight: 600; cursor: pointer;
+      transition: all 0.2s ease; border: none; text-decoration: none;
+    }
+    .btn-primary { background: var(--white); color: var(--purple); }
+    .btn-primary:hover { background: var(--gray-01); transform: translateY(-1px); box-shadow: var(--shadow-md); }
+    .btn-outline-white { background: transparent; color: var(--white); border: 2px solid rgba(255,255,255,0.4); }
+    .btn-outline-white:hover { border-color: var(--white); background: rgba(255,255,255,0.08); }
+    .btn-purple { background: var(--grad-purple); color: var(--white); box-shadow: 0px 4px 16px rgba(74,40,195,0.35); }
+    .btn-purple:hover { transform: translateY(-1px); box-shadow: 0px 8px 24px rgba(74,40,195,0.45); }
+    .btn-red { background: var(--red); color: var(--white); }
+    .btn-red:hover { background: var(--red-dark); transform: translateY(-1px); }
+
+    /* ─── NAV ──────────────────────────────────────────────────── */
+    nav {
+      position: fixed; top: 0; left: 0; right: 0; z-index: 100;
+      background: rgba(35, 19, 37, 0.92);
+      backdrop-filter: blur(16px); -webkit-backdrop-filter: blur(16px);
+      border-bottom: 1px solid rgba(255,255,255,0.08);
+    }
+    .nav-inner {
+      display: flex; align-items: center; justify-content: space-between;
+      height: 4.5rem; max-width: var(--max-w-wide); margin: 0 auto; padding: 0 2rem;
+    }
+    .nav-brand { display: flex; align-items: center; gap: 1rem; }
+    .nav-logo  { display: flex; align-items: center; gap: 0.6rem; }
+    .nav-logo-s { font-size: 1.35rem; font-weight: 900; color: var(--white); letter-spacing: -0.04em; }
+    .nav-logo-s span { color: var(--red); }
+    .nav-divider { width: 1px; height: 1.5rem; background: rgba(255,255,255,0.2); margin: 0 0.25rem; }
+    .nav-moreland { font-size: 0.85rem; font-weight: 500; color: rgba(255,255,255,0.65); }
+    .nav-badge {
+      font-size: 0.7rem; font-weight: 700; letter-spacing: 0.1em; text-transform: uppercase;
+      color: var(--red); background: rgba(230,39,79,0.15);
+      border: 1px solid rgba(230,39,79,0.3); padding: 0.25rem 0.75rem; border-radius: var(--radius-pill);
+    }
+    .nav-links { display: flex; align-items: center; gap: 2rem; list-style: none; }
+    .nav-links a { font-size: 0.875rem; font-weight: 500; color: rgba(255,255,255,0.7); transition: color 0.2s; }
+    .nav-links a:hover { color: var(--white); }
+
+    /* ─── HERO ─────────────────────────────────────────────────── */
+    #hero {
+      min-height: 100vh; background: var(--grad-hero);
+      display: flex; align-items: center;
+      position: relative; overflow: hidden; padding-top: 4.5rem;
+    }
+    .hero-glow {
+      position: absolute; width: 800px; height: 800px; border-radius: 50%;
+      background: radial-gradient(ellipse at center, rgba(100,67,216,0.35) 0%, transparent 70%);
+      top: -200px; right: -200px; pointer-events: none;
+    }
+    .hero-glow-2 {
+      position: absolute; width: 500px; height: 500px; border-radius: 50%;
+      background: radial-gradient(ellipse at center, rgba(230,39,79,0.15) 0%, transparent 70%);
+      bottom: -100px; left: -100px; pointer-events: none;
+    }
+    .hero-grid {
+      display: grid; grid-template-columns: 1fr 1fr; gap: 4rem;
+      align-items: center; position: relative; z-index: 2;
+    }
+    .hero-eyebrow {
+      display: inline-flex; align-items: center; gap: 0.5rem;
+      background: rgba(255,255,255,0.08); border: 1px solid rgba(255,255,255,0.15);
+      border-radius: var(--radius-pill); padding: 0.35rem 1rem; margin-bottom: 1.5rem;
+    }
+    .hero-eyebrow .dot {
+      width: 6px; height: 6px; border-radius: 50%;
+      background: var(--red); animation: pulse 2s infinite;
+    }
+    @keyframes pulse { 0%, 100% { opacity: 1; } 50% { opacity: 0.4; } }
+    .hero-eyebrow span {
+      font-size: 0.75rem; font-weight: 600; letter-spacing: 0.1em;
+      text-transform: uppercase; color: rgba(255,255,255,0.8);
+    }
+    .hero-title { color: var(--white); margin-bottom: 1.5rem; }
+    .hero-title .accent { color: var(--purple-xlight); }
+    .hero-title .accent-red { color: #FF6B8A; }
+    .hero-desc {
+      font-size: 1.15rem; line-height: 1.7;
+      color: rgba(255,255,255,0.7); margin-bottom: 2.5rem; max-width: 34rem;
+    }
+    .hero-actions { display: flex; gap: 1rem; flex-wrap: wrap; }
+
+    /* Hero right card */
+    .hero-card {
+      background: rgba(255,255,255,0.06);
+      border: 1px solid rgba(255,255,255,0.12);
+      border-radius: var(--radius);
+      padding: 2rem;
+      backdrop-filter: blur(8px);
+    }
+    .hero-card-label {
+      font-size: 0.7rem; font-weight: 700; letter-spacing: 0.12em;
+      text-transform: uppercase; color: var(--purple-xlight); margin-bottom: 1rem;
+    }
+    .signal-list { list-style: none; display: flex; flex-direction: column; gap: 0.85rem; }
+    .signal-item {
+      display: flex; align-items: flex-start; gap: 0.75rem;
+      padding: 0.85rem 1rem;
+      background: rgba(255,255,255,0.05);
+      border: 1px solid rgba(255,255,255,0.08);
+      border-radius: var(--radius-sm);
+    }
+    .signal-date {
+      font-size: 0.68rem; font-weight: 700; color: var(--red);
+      letter-spacing: 0.05em; text-transform: uppercase;
+      white-space: nowrap; padding-top: 0.1rem; min-width: 3.5rem;
+    }
+    .signal-text { font-size: 0.85rem; color: rgba(255,255,255,0.8); line-height: 1.4; }
+    .signal-text strong { color: var(--white); }
+    .hero-score-row {
+      display: flex; align-items: center; justify-content: space-between;
+      margin-top: 1.5rem; padding-top: 1.25rem;
+      border-top: 1px solid rgba(255,255,255,0.1);
+    }
+    .hero-score-label { font-size: 0.75rem; color: rgba(255,255,255,0.55); font-weight: 500; }
+    .hero-score-val {
+      font-size: 1.5rem; font-weight: 800; color: var(--white); letter-spacing: -0.02em;
+    }
+    .hero-score-val span { font-size: 0.9rem; font-weight: 400; color: rgba(255,255,255,0.4); }
+
+    /* ─── SECTION EYEBROW ──────────────────────────────────────── */
+    .section-eyebrow {
+      display: inline-flex; align-items: center; gap: 0.5rem;
+      background: rgba(74,40,195,0.08); border: 1px solid rgba(74,40,195,0.2);
+      border-radius: var(--radius-pill); padding: 0.3rem 0.9rem; margin-bottom: 1rem;
+    }
+    .section-eyebrow span { font-size: 0.72rem; font-weight: 700; letter-spacing: 0.1em; text-transform: uppercase; color: var(--purple); }
+
+    /* ─── INFLECTION POINT ────────────────────────────────────── */
+    #inflection { background: var(--light-gray); }
+    .inflection-grid {
+      display: grid; grid-template-columns: 1fr 1.5fr; gap: 4rem; align-items: start;
+    }
+    .inflection-left { position: sticky; top: 6rem; }
+    .timeline { display: flex; flex-direction: column; gap: 0; }
+    .timeline-item {
+      display: flex; gap: 1.25rem; padding-bottom: 2rem; position: relative;
+    }
+    .timeline-item:not(:last-child)::after {
+      content: '';
+      position: absolute;
+      left: 1.25rem;
+      top: 2.5rem;
+      bottom: 0;
+      width: 2px;
+      background: var(--gray-02);
+    }
+    .timeline-dot {
+      width: 2.5rem; height: 2.5rem; border-radius: 50%; flex-shrink: 0;
+      display: flex; align-items: center; justify-content: center;
+      font-size: 0.75rem; font-weight: 800; position: relative; z-index: 1;
+    }
+    .dot-red    { background: rgba(230,39,79,0.12); color: var(--red); border: 2px solid rgba(230,39,79,0.3); }
+    .dot-purple { background: rgba(74,40,195,0.1);  color: var(--purple); border: 2px solid rgba(74,40,195,0.25); }
+    .dot-gray   { background: var(--gray-02); color: var(--mid-gray); border: 2px solid var(--gray-03); }
+    .timeline-content { padding-top: 0.3rem; }
+    .timeline-month { font-size: 0.7rem; font-weight: 700; letter-spacing: 0.1em; text-transform: uppercase; color: var(--mid-gray); margin-bottom: 0.25rem; }
+    .timeline-title { font-size: 0.95rem; font-weight: 700; color: var(--dark-gray); margin-bottom: 0.35rem; }
+    .timeline-body { font-size: 0.875rem; line-height: 1.55; color: var(--mid-gray); }
+    .timeline-tag {
+      display: inline-block; margin-top: 0.4rem;
+      font-size: 0.65rem; font-weight: 700; letter-spacing: 0.08em; text-transform: uppercase;
+      background: rgba(74,40,195,0.08); color: var(--purple);
+      border: 1px solid rgba(74,40,195,0.2); border-radius: var(--radius-pill);
+      padding: 0.15rem 0.6rem;
+    }
+    .timeline-tag.red { background: rgba(230,39,79,0.08); color: var(--red); border-color: rgba(230,39,79,0.2); }
+
+    /* Implication cards on the right */
+    .implication-cards { display: flex; flex-direction: column; gap: 1.25rem; }
+    .impl-card {
+      background: var(--white); border: 1px solid var(--gray-02);
+      border-radius: var(--radius); padding: 1.5rem;
+      box-shadow: var(--shadow-sm); transition: box-shadow 0.2s;
+    }
+    .impl-card:hover { box-shadow: var(--shadow-md); }
+    .impl-card-top { display: flex; align-items: center; gap: 0.75rem; margin-bottom: 0.75rem; }
+    .impl-icon {
+      width: 2.25rem; height: 2.25rem; border-radius: 0.6rem;
+      background: var(--grad-purple); display: flex; align-items: center;
+      justify-content: center; font-size: 1rem; flex-shrink: 0;
+    }
+    .impl-card h4 { font-size: 0.95rem; color: var(--dark-gray); }
+    .impl-card p  { font-size: 0.875rem; color: var(--mid-gray); line-height: 1.55; }
+    .impl-product-tags { display: flex; flex-wrap: wrap; gap: 0.4rem; margin-top: 0.75rem; }
+    .product-tag {
+      font-size: 0.65rem; font-weight: 700; letter-spacing: 0.06em; text-transform: uppercase;
+      background: rgba(74,40,195,0.07); color: var(--purple-light);
+      border: 1px solid rgba(74,40,195,0.18); border-radius: var(--radius-pill);
+      padding: 0.2rem 0.6rem;
+    }
+
+    /* ─── ASSESSMENT SNAPSHOT ─────────────────────────────────── */
+    #assessment { background: var(--white); }
+    .assessment-intro { max-width: 44rem; margin: 0 auto; text-align: center; margin-bottom: 3.5rem; }
+    .score-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 1rem; margin-bottom: 2.5rem; }
+    .score-card {
+      background: var(--light-gray); border: 1px solid var(--gray-02);
+      border-radius: var(--radius); padding: 1.25rem 1rem; text-align: center;
+      transition: all 0.2s;
+    }
+    .score-card:hover { transform: translateY(-2px); box-shadow: var(--shadow-md); }
+    .score-card.high { border-color: rgba(74,40,195,0.3); background: rgba(74,40,195,0.04); }
+    .score-card.gap  { border-color: rgba(230,39,79,0.3); background: rgba(230,39,79,0.04); }
+    .score-num {
+      font-size: 2.5rem; font-weight: 900; line-height: 1;
+      letter-spacing: -0.04em; margin-bottom: 0.25rem;
+    }
+    .score-num.five  { color: var(--purple); }
+    .score-num.four  { color: var(--purple-light); }
+    .score-num.three { color: var(--mid-gray); }
+    .score-num.two   { color: var(--red); }
+    .score-label { font-size: 0.78rem; font-weight: 600; color: var(--dark-gray); line-height: 1.3; }
+    .score-sub   { font-size: 0.68rem; color: var(--mid-gray); margin-top: 0.2rem; }
+    .score-bar-wrap { margin-top: 0.6rem; background: var(--gray-02); border-radius: 9999px; height: 4px; overflow: hidden; }
+    .score-bar { height: 100%; border-radius: 9999px; }
+    .bar-5 { width: 100%; background: var(--purple); }
+    .bar-4 { width: 80%;  background: var(--purple-light); }
+    .bar-3 { width: 60%;  background: var(--mid-gray); }
+    .bar-2 { width: 40%;  background: var(--red); }
+
+    .assessment-callout {
+      background: linear-gradient(135deg, rgba(74,40,195,0.06) 0%, rgba(124,92,232,0.06) 100%);
+      border: 1px solid rgba(74,40,195,0.15); border-radius: var(--radius);
+      padding: 2rem; display: flex; gap: 1.5rem; align-items: flex-start;
+    }
+    .callout-icon { font-size: 2rem; flex-shrink: 0; }
+    .callout-text h4 { color: var(--dark-gray); margin-bottom: 0.4rem; }
+    .callout-text p  { font-size: 0.9rem; }
+
+    /* ─── SERVICES ─────────────────────────────────────────────── */
+    #services { background: var(--light-gray); }
+    .services-intro { max-width: 44rem; margin: 0 auto 3.5rem; text-align: center; }
+    .service-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1.5rem; }
+    .svc-card {
+      background: var(--white); border: 1px solid var(--gray-02);
+      border-radius: var(--radius); padding: 2rem;
+      display: flex; flex-direction: column; gap: 1rem;
+      transition: all 0.25s; position: relative; overflow: hidden;
+    }
+    .svc-card::before {
+      content: ''; position: absolute; top: 0; left: 0; right: 0; height: 3px;
+      background: var(--grad-purple); opacity: 0; transition: opacity 0.25s;
+    }
+    .svc-card:hover { box-shadow: var(--shadow-lg); transform: translateY(-3px); }
+    .svc-card:hover::before { opacity: 1; }
+    .svc-icon {
+      width: 3rem; height: 3rem; border-radius: 0.9rem;
+      background: var(--grad-purple); display: flex; align-items: center;
+      justify-content: center; font-size: 1.3rem;
+    }
+    .svc-card h3 { font-size: 1.1rem; color: var(--dark-gray); }
+    .svc-card > p { font-size: 0.9rem; flex: 1; }
+    .svc-specifics { display: flex; flex-direction: column; gap: 0.4rem; }
+    .svc-spec-item {
+      display: flex; align-items: flex-start; gap: 0.5rem;
+      font-size: 0.82rem; color: var(--dark-gray);
+    }
+    .svc-spec-item::before {
+      content: '→'; color: var(--purple); font-weight: 700; flex-shrink: 0;
+    }
+    .svc-gap-tag {
+      font-size: 0.65rem; font-weight: 700; letter-spacing: 0.08em; text-transform: uppercase;
+      padding: 0.2rem 0.6rem; border-radius: var(--radius-pill);
+      background: rgba(230,39,79,0.08); color: var(--red);
+      border: 1px solid rgba(230,39,79,0.2);
+      display: inline-block; margin-top: 0.5rem;
+    }
+
+    /* ─── GEOGRAPHY ────────────────────────────────────────────── */
+    #geography { background: var(--dark); }
+    .geo-grid { display: grid; grid-template-columns: 1.2fr 1fr; gap: 3rem; align-items: start; }
+    .geo-card {
+      border-radius: var(--radius); padding: 2.25rem; position: relative; overflow: hidden;
+    }
+    .geo-card-na {
+      background: linear-gradient(135deg, rgba(74,40,195,0.5) 0%, rgba(35,19,37,0.8) 100%);
+      border: 1px solid rgba(74,40,195,0.35);
+    }
+    .geo-card-me {
+      background: linear-gradient(135deg, rgba(230,39,79,0.25) 0%, rgba(35,19,37,0.8) 100%);
+      border: 1px solid rgba(230,39,79,0.25);
+    }
+    .geo-flag { font-size: 2rem; margin-bottom: 0.75rem; }
+    .geo-badge {
+      display: inline-block; font-size: 0.65rem; font-weight: 700;
+      letter-spacing: 0.1em; text-transform: uppercase;
+      padding: 0.25rem 0.75rem; border-radius: var(--radius-pill);
+      margin-bottom: 1rem;
+    }
+    .geo-badge-primary { background: rgba(74,40,195,0.35); color: #B4A0F8; border: 1px solid rgba(74,40,195,0.5); }
+    .geo-badge-secondary { background: rgba(230,39,79,0.2); color: #F8A0B4; border: 1px solid rgba(230,39,79,0.35); }
+    .geo-card h3 { color: var(--white); margin-bottom: 0.75rem; font-size: 1.3rem; }
+    .geo-card p  { color: rgba(255,255,255,0.65); font-size: 0.9rem; line-height: 1.6; margin-bottom: 1.25rem; }
+    .geo-list { list-style: none; display: flex; flex-direction: column; gap: 0.6rem; }
+    .geo-list li {
+      display: flex; align-items: flex-start; gap: 0.6rem;
+      font-size: 0.875rem; color: rgba(255,255,255,0.75);
+    }
+    .geo-list li::before { content: '✓'; color: var(--purple-xlight); font-weight: 700; flex-shrink: 0; }
+    .geo-card-me .geo-list li::before { color: #F8A0B4; }
+    .geo-motion {
+      margin-top: 1.25rem; padding: 0.85rem 1rem;
+      background: rgba(255,255,255,0.06); border: 1px solid rgba(255,255,255,0.1);
+      border-radius: var(--radius-sm); font-size: 0.8rem; color: rgba(255,255,255,0.6);
+    }
+    .geo-motion strong { color: var(--white); font-weight: 600; }
+
+    /* ─── 90-DAY PLAN ─────────────────────────────────────────── */
+    #plan { background: var(--white); }
+    .plan-intro { max-width: 44rem; margin: 0 auto 3.5rem; text-align: center; }
+    .plan-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1.5rem; }
+    .plan-phase {
+      border-radius: var(--radius); padding: 2rem; position: relative;
+      border: 1px solid var(--gray-02);
+    }
+    .plan-phase-1 { background: rgba(74,40,195,0.04); border-color: rgba(74,40,195,0.18); }
+    .plan-phase-2 { background: rgba(74,40,195,0.08); border-color: rgba(74,40,195,0.25); }
+    .plan-phase-3 { background: rgba(74,40,195,0.13); border-color: rgba(74,40,195,0.32); }
+    .plan-phase-num {
+      font-size: 3rem; font-weight: 900; line-height: 1;
+      color: rgba(74,40,195,0.15); letter-spacing: -0.04em; margin-bottom: 0.25rem;
+    }
+    .plan-phase-label {
+      font-size: 0.7rem; font-weight: 700; letter-spacing: 0.1em;
+      text-transform: uppercase; color: var(--purple); margin-bottom: 0.5rem;
+    }
+    .plan-phase h3 { font-size: 1rem; color: var(--dark-gray); margin-bottom: 0.75rem; }
+    .plan-tasks { list-style: none; display: flex; flex-direction: column; gap: 0.6rem; }
+    .plan-tasks li {
+      display: flex; align-items: flex-start; gap: 0.5rem;
+      font-size: 0.85rem; color: var(--mid-gray); line-height: 1.45;
+    }
+    .plan-tasks li::before { content: '·'; color: var(--purple); font-size: 1.2rem; line-height: 1; flex-shrink: 0; }
+    .plan-kpi {
+      margin-top: 1.25rem; padding: 0.85rem 1rem;
+      background: rgba(74,40,195,0.06); border: 1px solid rgba(74,40,195,0.15);
+      border-radius: var(--radius-sm);
+    }
+    .plan-kpi-label { font-size: 0.65rem; font-weight: 700; letter-spacing: 0.1em; text-transform: uppercase; color: var(--purple); margin-bottom: 0.25rem; }
+    .plan-kpi-val { font-size: 0.82rem; color: var(--dark-gray); font-weight: 500; }
+
+    /* ─── WHY MORELAND ────────────────────────────────────────── */
+    #why { background: var(--light-gray); }
+    .why-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 4rem; align-items: center; }
+    .why-left h2 { margin-bottom: 1.25rem; }
+    .why-left p  { margin-bottom: 2rem; }
+    .proof-list { display: flex; flex-direction: column; gap: 1rem; }
+    .proof-item {
+      background: var(--white); border: 1px solid var(--gray-02);
+      border-radius: var(--radius-sm); padding: 1.25rem 1.5rem;
+      display: flex; gap: 1rem; align-items: flex-start;
+    }
+    .proof-icon { font-size: 1.5rem; flex-shrink: 0; }
+    .proof-item h4 { font-size: 0.95rem; color: var(--dark-gray); margin-bottom: 0.2rem; }
+    .proof-item p  { font-size: 0.85rem; }
+    .why-stat-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 1rem; }
+    .why-stat {
+      background: var(--white); border: 1px solid var(--gray-02);
+      border-radius: var(--radius); padding: 1.5rem; text-align: center;
+    }
+    .why-stat-num {
+      font-size: 2.25rem; font-weight: 900; color: var(--purple);
+      letter-spacing: -0.04em; margin-bottom: 0.25rem;
+    }
+    .why-stat-label { font-size: 0.82rem; color: var(--mid-gray); line-height: 1.4; }
+
+    /* ─── STAKEHOLDERS ────────────────────────────────────────── */
+    #stakeholders { background: var(--white); }
+    .stakeholder-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1.25rem; }
+    .stk-card {
+      background: var(--light-gray); border: 1px solid var(--gray-02);
+      border-radius: var(--radius); padding: 1.5rem; transition: all 0.2s;
+    }
+    .stk-card:hover { box-shadow: var(--shadow-md); background: var(--white); }
+    .stk-card.primary { border-color: rgba(74,40,195,0.3); background: rgba(74,40,195,0.04); }
+    .stk-avatar {
+      width: 3rem; height: 3rem; border-radius: 50%;
+      background: var(--grad-purple); display: flex; align-items: center;
+      justify-content: center; font-size: 1.1rem; font-weight: 800;
+      color: var(--white); margin-bottom: 0.85rem;
+    }
+    .stk-card.primary .stk-avatar { background: linear-gradient(135deg, #E6274F, #AD0038); }
+    .stk-name { font-size: 0.95rem; font-weight: 700; color: var(--dark-gray); }
+    .stk-title { font-size: 0.78rem; color: var(--mid-gray); margin-bottom: 0.75rem; }
+    .stk-angle { font-size: 0.82rem; color: var(--mid-gray); line-height: 1.5; }
+    .stk-primary-badge {
+      display: inline-block; margin-top: 0.75rem;
+      font-size: 0.65rem; font-weight: 700; letter-spacing: 0.08em; text-transform: uppercase;
+      background: rgba(230,39,79,0.1); color: var(--red);
+      border: 1px solid rgba(230,39,79,0.25); border-radius: var(--radius-pill);
+      padding: 0.2rem 0.6rem;
+    }
+
+    /* ─── CTA ──────────────────────────────────────────────────── */
+    #cta {
+      background: var(--grad-hero); position: relative; overflow: hidden;
+      padding: 7rem 0;
+    }
+    .cta-glow {
+      position: absolute; width: 600px; height: 600px; border-radius: 50%;
+      background: radial-gradient(ellipse at center, rgba(100,67,216,0.4) 0%, transparent 70%);
+      top: -200px; right: -100px; pointer-events: none;
+    }
+    .cta-inner { text-align: center; position: relative; z-index: 2; }
+    .cta-inner h2 { color: var(--white); margin-bottom: 1rem; max-width: 40rem; margin-left: auto; margin-right: auto; }
+    .cta-inner p  { color: rgba(255,255,255,0.65); max-width: 34rem; margin: 0 auto 2.5rem; font-size: 1.1rem; }
+    .cta-actions  { display: flex; gap: 1rem; justify-content: center; flex-wrap: wrap; }
+    .cta-contact  { margin-top: 2rem; font-size: 0.85rem; color: rgba(255,255,255,0.45); }
+    .cta-contact a { color: rgba(255,255,255,0.7); text-decoration: underline; }
+
+    /* ─── FOOTER ───────────────────────────────────────────────── */
+    footer {
+      background: var(--dark); padding: 2.5rem 0;
+      border-top: 1px solid rgba(255,255,255,0.06);
+    }
+    .footer-inner {
+      display: flex; align-items: center; justify-content: space-between;
+      max-width: var(--max-w-wide); margin: 0 auto; padding: 0 2rem;
+    }
+    .footer-brand { font-size: 0.875rem; color: rgba(255,255,255,0.35); }
+    .footer-brand strong { color: rgba(255,255,255,0.6); }
+    .footer-conf { font-size: 0.75rem; color: rgba(255,255,255,0.25); text-align: right; max-width: 24rem; }
+
+    /* ─── RESPONSIVE ───────────────────────────────────────────── */
+    @media (max-width: 900px) {
+      .hero-grid, .inflection-grid, .geo-grid, .why-grid { grid-template-columns: 1fr; }
+      .inflection-left { position: static; }
+      .score-grid { grid-template-columns: repeat(2, 1fr); }
+      .service-grid, .plan-grid, .stakeholder-grid { grid-template-columns: 1fr 1fr; }
+    }
+    @media (max-width: 600px) {
+      .score-grid, .service-grid, .plan-grid, .stakeholder-grid { grid-template-columns: 1fr; }
+    }
+  </style>
+</head>
+<body>
+
+<!-- ── NAV ──────────────────────────────────────────────────────── -->
+<nav>
+  <div class="nav-inner">
+    <div class="nav-brand">
+      <div class="nav-logo">
+        <div class="nav-logo-s">Seclore<span>.</span></div>
+        <div class="nav-divider"></div>
+        <div class="nav-moreland">Moreland Associates</div>
+      </div>
+      <div class="nav-badge">Confidential Proposal</div>
+    </div>
+    <ul class="nav-links">
+      <li><a href="#inflection">Why Now</a></li>
+      <li><a href="#assessment">Assessment</a></li>
+      <li><a href="#services">Services</a></li>
+      <li><a href="#geography">Geography</a></li>
+      <li><a href="#plan">90-Day Plan</a></li>
+      <li><a href="#cta" class="btn btn-red" style="padding:0.5rem 1.1rem;font-size:0.8rem;">Let's Talk</a></li>
+    </ul>
+  </div>
+</nav>
+
+<!-- ── HERO ──────────────────────────────────────────────────────── -->
+<section id="hero">
+  <div class="hero-glow"></div>
+  <div class="hero-glow-2"></div>
+  <div class="container">
+    <div class="hero-grid">
+      <div class="hero-left">
+        <div class="hero-eyebrow">
+          <div class="dot"></div>
+          <span>Prepared for Justin Enders · CRO, Seclore</span>
+        </div>
+
+        <h1 class="hero-title">
+          Turning <span class="accent">ARMOR</span><br/>
+          into <span class="accent-red">Revenue</span><br/>
+          in North America
+        </h1>
+
+        <p class="hero-desc">
+          Seclore's February 2026 ARMOR launch redefines your category. The next 90 days determine
+          whether that positioning converts into pipeline — or gets lost in messaging inconsistency,
+          late buyer engagement, and channel friction. Moreland Associates is a fractional marketing
+          partner built for exactly this inflection point.
+        </p>
+
+        <div class="hero-actions">
+          <a href="#plan" class="btn btn-primary">See the 90-Day Plan →</a>
+          <a href="#assessment" class="btn btn-outline-white">View Assessment</a>
+        </div>
+      </div>
+
+      <div class="hero-card">
+        <div class="hero-card-label">Recent Seclore Signals · Key Inflection Points</div>
+        <ul class="signal-list">
+          <li class="signal-item">
+            <div class="signal-date">Feb 2026</div>
+            <div class="signal-text"><strong>ARMOR Platform Launch.</strong> Unified Data Security Intelligence — AI Discovery, Classification, EDRM, Risk Insights, and Proof of Compliance in a single platform.</div>
+          </li>
+          <li class="signal-item">
+            <div class="signal-date">Dec 2025</div>
+            <div class="signal-text"><strong>Data Security Intelligence Framework.</strong> Shifting from data visibility to actionable decision intelligence — a new content pillar requiring consistent enablement.</div>
+          </li>
+          <li class="signal-item">
+            <div class="signal-date">Nov 2025</div>
+            <div class="signal-text"><strong>North America Distribution Partnership.</strong> Channel scale is live. Partner-ready targeting, co-sell triggers, and shared intelligence are now critical.</div>
+          </li>
+          <li class="signal-item">
+            <div class="signal-date">Jul 2025</div>
+            <div class="signal-text"><strong>New CEO: Vishal Gauri.</strong> Leadership with North America P&amp;L ownership signals commercial investment appetite and urgency to establish repeatable growth.</div>
+          </li>
+          <li class="signal-item">
+            <div class="signal-date">Feb 2025</div>
+            <div class="signal-text"><strong>Saudi Arabia Expansion · Secure 2030.</strong> Middle East enterprise and government demand is real. Region requires an SDR and field-supported motion.</div>
+          </li>
+        </ul>
+        <div class="hero-score-row">
+          <div>
+            <div class="hero-score-label">Moreland × Seclore Fit Score</div>
+            <div class="hero-score-label" style="color:rgba(255,255,255,0.35);font-size:0.65rem;">Weighted across 12 commercial use cases</div>
+          </div>
+          <div class="hero-score-val">4.04 <span>/ 5</span></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ── INFLECTION POINT ──────────────────────────────────────────── -->
+<section id="inflection" class="section">
+  <div class="container">
+    <div class="inflection-grid">
+      <div class="inflection-left">
+        <div class="section-eyebrow"><span>Why Now</span></div>
+        <h2 style="margin-bottom:1rem;">Five signals that make this the right moment</h2>
+        <p style="margin-bottom:2rem;">Seclore has compressed more strategic change into 12 months than most enterprise security vendors manage in three years. Each signal below creates a specific commercial need — and a Moreland service that addresses it directly.</p>
+
+        <div class="timeline">
+          <div class="timeline-item">
+            <div class="timeline-dot dot-red">🛡️</div>
+            <div class="timeline-content">
+              <div class="timeline-month">February 2026</div>
+              <div class="timeline-title">ARMOR Platform Launch</div>
+              <div class="timeline-body">Seclore unified AI Discovery, Digital Asset Classification, EDRM, Risk Insights, and Proof of Compliance into a single platform. This category shift requires consistent talk tracks across every direct rep, partner, and digital touchpoint — or buyers hear different stories at every stage.</div>
+              <span class="timeline-tag red">Messaging alignment urgency</span>
+            </div>
+          </div>
+          <div class="timeline-item">
+            <div class="timeline-dot dot-purple">📊</div>
+            <div class="timeline-content">
+              <div class="timeline-month">December 2025</div>
+              <div class="timeline-title">Data Security Intelligence Framework</div>
+              <div class="timeline-body">A new framework — Discover → Context → Enforce → Prove — shifts Seclore's narrative from data protection to actionable intelligence. The framework is a powerful AEO and content marketing anchor, but only if it's built into SEO architecture, answer-engine content, and sales enablement assets.</div>
+              <span class="timeline-tag">Content & SEO/AEO opportunity</span>
+            </div>
+          </div>
+          <div class="timeline-item">
+            <div class="timeline-dot dot-purple">🤝</div>
+            <div class="timeline-content">
+              <div class="timeline-month">November 2025</div>
+              <div class="timeline-title">North America Distribution Partnership</div>
+              <div class="timeline-body">A formal distribution partnership accelerates North American reach through the channel. Without partner-ready intelligence — ICP account lists, "why now" triggers, co-sell packs — the partnership adds reach without pipeline quality.</div>
+              <span class="timeline-tag">Channel enablement urgency</span>
+            </div>
+          </div>
+          <div class="timeline-item">
+            <div class="timeline-dot dot-gray">👤</div>
+            <div class="timeline-content">
+              <div class="timeline-month">July 2025</div>
+              <div class="timeline-title">CEO Transition: Vishal Gauri</div>
+              <div class="timeline-body">Gauri enters with direct ownership of North America sales and customer success — a strong signal of growth investment appetite. New commercial leadership frequently triggers a reassessment of how marketing supports revenue, making this an ideal entry point for a fractional partnership.</div>
+              <span class="timeline-tag">Commercial investment window</span>
+            </div>
+          </div>
+          <div class="timeline-item">
+            <div class="timeline-dot dot-gray">🌍</div>
+            <div class="timeline-content">
+              <div class="timeline-month">February 2025</div>
+              <div class="timeline-title">Saudi Arabia Expansion · Secure 2030</div>
+              <div class="timeline-body">Seclore's Middle East push targets Vision 2030-aligned enterprise and government demand in the GCC. This market requires a dedicated SDR and AE-supported motion with region-specific messaging — not a simple extension of the North America playbook.</div>
+              <span class="timeline-tag">SDR/AE market motion needed</span>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="implication-cards">
+        <div class="section-eyebrow"><span>Commercial Implications</span></div>
+        <h3 style="margin-bottom:1.5rem;color:var(--dark-gray);">What each signal demands from marketing</h3>
+
+        <div class="impl-card">
+          <div class="impl-card-top">
+            <div class="impl-icon">🎯</div>
+            <h4>ARMOR messaging must reach buyers before they shortlist</h4>
+          </div>
+          <p>6sense data shows buyers form shortlists before speaking with vendors. ARMOR's differentiation — persistent data-centric control that travels with data across AI agents, clouds, and partners — must appear in organic search, AI answer engines, and SDR outreach before a buyer's evaluation window opens.</p>
+          <div class="impl-product-tags">
+            <span class="product-tag">AI Discovery</span>
+            <span class="product-tag">ARMOR Platform</span>
+            <span class="product-tag">SEO/AEO</span>
+            <span class="product-tag">SDR Outreach</span>
+          </div>
+        </div>
+
+        <div class="impl-card">
+          <div class="impl-card-top">
+            <div class="impl-icon">📋</div>
+            <h4>Category shift requires a unified content architecture</h4>
+          </div>
+          <p>The Discover → Context → Enforce → Prove framework is a compelling AEO anchor — but only if it's structured as HTML content with FAQ schema, HowTo markup, and question-based headings that AI engines and featured snippets can extract. Currently the framework lives in graphics, not crawlable text.</p>
+          <div class="impl-product-tags">
+            <span class="product-tag">Data Security Intelligence Framework</span>
+            <span class="product-tag">AEO Content</span>
+            <span class="product-tag">Schema Markup</span>
+          </div>
+        </div>
+
+        <div class="impl-card">
+          <div class="impl-card-top">
+            <div class="impl-icon">🔗</div>
+            <h4>Channel partners need co-sell intelligence, not just collateral</h4>
+          </div>
+          <p>Seclore's Partner Pulse Program, distributor partnership, and referral incentives create the infrastructure for channel scale. But MSPs and VARs convert at higher rates when they receive account-level "why now" triggers, ICP target lists by vertical, and Seclore-specific battlecards — not just product one-pagers.</p>
+          <div class="impl-product-tags">
+            <span class="product-tag">EDRM</span>
+            <span class="product-tag">Digital Asset Classification</span>
+            <span class="product-tag">Partner Enablement</span>
+            <span class="product-tag">CRM Architecture</span>
+          </div>
+        </div>
+
+        <div class="impl-card">
+          <div class="impl-card-top">
+            <div class="impl-icon">💡</div>
+            <h4>Paid channels need account-level precision, not spray-and-pray</h4>
+          </div>
+          <p>Enterprise data security buyers — CISOs, data governance leads, compliance officers, and CIOs — respond to account-specific proof, not generic ad copy. Paid channel efficacy for ARMOR requires LinkedIn ABM targeting that reflects AI readiness signals, compliance urgency, and Microsoft stack footprint.</p>
+          <div class="impl-product-tags">
+            <span class="product-tag">Risk Insights</span>
+            <span class="product-tag">Email Encryption</span>
+            <span class="product-tag">Paid ABM</span>
+            <span class="product-tag">CRM Data Hygiene</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ── ASSESSMENT SNAPSHOT ──────────────────────────────────────── -->
+<section id="assessment" class="section">
+  <div class="container">
+    <div class="assessment-intro">
+      <div class="section-eyebrow"><span>Assessment · March 2026</span></div>
+      <h2 style="margin-bottom:1rem;">Where Seclore sits today — and where to move first</h2>
+      <p>An independent outside-in assessment scored Seclore across 18 commercial value drivers (1–5 maturity scale) and 12 business use cases. The highest-gap areas — scores of 2 — are where Moreland services deliver the fastest pipeline impact.</p>
+    </div>
+
+    <!-- Use Case Scores -->
+    <div style="margin-bottom:1rem;">
+      <div class="label" style="color:var(--mid-gray);margin-bottom:1rem;">Use-Case Fit Scores (1=Low · 5=High)</div>
+    </div>
+    <div class="score-grid" style="margin-bottom:1.5rem;">
+      <div class="score-card high">
+        <div class="score-num five">5</div>
+        <div class="score-label">B2B Sales Intelligence</div>
+        <div class="score-sub">Highest priority</div>
+        <div class="score-bar-wrap"><div class="score-bar bar-5"></div></div>
+      </div>
+      <div class="score-card high">
+        <div class="score-num five">5</div>
+        <div class="score-label">Competitive Intelligence</div>
+        <div class="score-sub">Category convergence risk</div>
+        <div class="score-bar-wrap"><div class="score-bar bar-5"></div></div>
+      </div>
+      <div class="score-card high">
+        <div class="score-num five">5</div>
+        <div class="score-label">Risk / Compliance</div>
+        <div class="score-sub">Core to ARMOR narrative</div>
+        <div class="score-bar-wrap"><div class="score-bar bar-5"></div></div>
+      </div>
+      <div class="score-card high">
+        <div class="score-num five">5</div>
+        <div class="score-label">AI Adoption Signals</div>
+        <div class="score-sub">ARMOR's primary trigger</div>
+        <div class="score-bar-wrap"><div class="score-bar bar-5"></div></div>
+      </div>
+      <div class="score-card high">
+        <div class="score-num five">5</div>
+        <div class="score-label">IT Effectiveness</div>
+        <div class="score-sub">Microsoft / DLP / CASB stack</div>
+        <div class="score-bar-wrap"><div class="score-bar bar-5"></div></div>
+      </div>
+      <div class="score-card">
+        <div class="score-num four">4</div>
+        <div class="score-label">Product Optimization</div>
+        <div class="score-sub">ARMOR + Framework evolution</div>
+        <div class="score-bar-wrap"><div class="score-bar bar-4"></div></div>
+      </div>
+      <div class="score-card">
+        <div class="score-num three">3</div>
+        <div class="score-label">CX / Brand</div>
+        <div class="score-sub">Gartner Peer Insights, G2</div>
+        <div class="score-bar-wrap"><div class="score-bar bar-3"></div></div>
+      </div>
+      <div class="score-card">
+        <div class="score-num three">3</div>
+        <div class="score-label">Pricing / Packaging</div>
+        <div class="score-sub">Module complexity</div>
+        <div class="score-bar-wrap"><div class="score-bar bar-3"></div></div>
+      </div>
+    </div>
+
+    <!-- Commercial Maturity Gaps -->
+    <div style="margin-bottom:1rem;margin-top:2.5rem;">
+      <div class="label" style="color:var(--red);margin-bottom:1rem;">Commercial Maturity Gaps — Score 2 = Immediate Opportunity</div>
+    </div>
+    <div class="score-grid">
+      <div class="score-card gap">
+        <div class="score-num two">2</div>
+        <div class="score-label">Lead & Intent Signal Quality</div>
+        <div class="score-sub">Buyers shortlist before first seller contact</div>
+        <div class="score-bar-wrap"><div class="score-bar bar-2"></div></div>
+      </div>
+      <div class="score-card gap">
+        <div class="score-num two">2</div>
+        <div class="score-label">Seller Research & Prep Burden</div>
+        <div class="score-sub">Manual prep slows time-to-outreach</div>
+        <div class="score-bar-wrap"><div class="score-bar bar-2"></div></div>
+      </div>
+      <div class="score-card gap">
+        <div class="score-num two">2</div>
+        <div class="score-label">Enablement Asset Sprawl</div>
+        <div class="score-sub">ARMOR shift creates talk-track inconsistency</div>
+        <div class="score-bar-wrap"><div class="score-bar bar-2"></div></div>
+      </div>
+      <div class="score-card gap">
+        <div class="score-num two">2</div>
+        <div class="score-label">Competitive Dynamics</div>
+        <div class="score-sub">DSPM/DLP/EDRM category convergence</div>
+        <div class="score-bar-wrap"><div class="score-bar bar-2"></div></div>
+      </div>
+      <div class="score-card gap">
+        <div class="score-num two">2</div>
+        <div class="score-label">Differentiated Messaging</div>
+        <div class="score-sub">Repositioning risk across reps & partners</div>
+        <div class="score-bar-wrap"><div class="score-bar bar-2"></div></div>
+      </div>
+      <div class="score-card gap">
+        <div class="score-num two">2</div>
+        <div class="score-label">Partner Co-Sell Complexity</div>
+        <div class="score-sub">Distribution partnership needs enablement</div>
+        <div class="score-bar-wrap"><div class="score-bar bar-2"></div></div>
+      </div>
+      <div class="score-card gap">
+        <div class="score-num two">2</div>
+        <div class="score-label">Segment Expansion Complexity</div>
+        <div class="score-sub">NA primary, Middle East secondary</div>
+        <div class="score-bar-wrap"><div class="score-bar bar-2"></div></div>
+      </div>
+      <div class="score-card" style="background:rgba(74,40,195,0.03);border-color:rgba(74,40,195,0.15);">
+        <div class="score-num" style="color:var(--purple);font-size:1.75rem;margin-bottom:0.1rem;">4.04</div>
+        <div class="score-label">Overall Fit Score</div>
+        <div class="score-sub">Weighted across 12 use cases · Strong fit</div>
+        <div class="score-bar-wrap"><div class="score-bar" style="width:80%;background:var(--purple);"></div></div>
+      </div>
+    </div>
+
+    <div class="assessment-callout" style="margin-top:2.5rem;">
+      <div class="callout-icon">📌</div>
+      <div class="callout-text">
+        <h4>The recommended pilot: North America new logo targeting + competitive/regulatory intelligence</h4>
+        <p>Account-level B2B sales intelligence plus competitive, regulatory, and AI trigger monitoring for named accounts in financial services, manufacturing, semiconductor, and government — with Microsoft-centric enterprise environments as a key overlay. This directly addresses the top three scoring gaps and aligns with the ARMOR platform narrative and the North America distribution partnership.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ── SERVICES ──────────────────────────────────────────────────── -->
+<section id="services" class="section">
+  <div class="container">
+    <div class="services-intro">
+      <div class="section-eyebrow"><span>Moreland Services</span></div>
+      <h2 style="margin-bottom:1rem;">Six disciplines. Each mapped to a specific Seclore gap.</h2>
+      <p>These are not generic marketing services. Each engagement area below is anchored to a scored gap in Seclore's commercial maturity — with ARMOR, AI Discovery, EDRM, and the Data Security Intelligence Framework as the content backbone.</p>
+    </div>
+
+    <div class="service-grid">
+
+      <!-- 1 -->
+      <div class="svc-card">
+        <div class="svc-icon">🤖</div>
+        <h3>AI-Supported SDR Outreach</h3>
+        <p>Automated, signal-driven outreach that gets Seclore in front of enterprise buyers before they form their shortlist — with ARMOR messaging that's persona-specific and account-relevant.</p>
+        <div class="svc-specifics">
+          <div class="svc-spec-item">Multi-signal "why now" trigger library for ARMOR use cases (AI deployments, compliance events, Microsoft Purview rollouts)</div>
+          <div class="svc-spec-item">Account readiness scoring routed to AEs, SDRs, and channel partners</div>
+          <div class="svc-spec-item">Persona-specific outreach sequences for CISO, data governance, compliance, and CIO buyers</div>
+          <div class="svc-spec-item">Automated account briefs reducing seller research time to minutes, not hours</div>
+        </div>
+        <span class="svc-gap-tag">Closes Gap: Lead & Intent Signal Quality (Score 2)</span>
+      </div>
+
+      <!-- 2 -->
+      <div class="svc-card">
+        <div class="svc-icon">🔍</div>
+        <h3>SEO & AEO Architecture</h3>
+        <p>Rebuilding Seclore's digital content structure so that ARMOR, EDRM, AI Discovery, and the Data Security Intelligence Framework appear in AI-generated answers and featured snippets — not just on page 2.</p>
+        <div class="svc-specifics">
+          <div class="svc-spec-item">FAQ schema and HowTo markup on all product and solution pages</div>
+          <div class="svc-spec-item">llms.txt implementation for AI engine discoverability (currently 404)</div>
+          <div class="svc-spec-item">Question-based H2/H3 headings targeting "what is EDRM," "how does AI Discovery work," "ARMOR vs. DLP"</div>
+          <div class="svc-spec-item">Expand ARMOR and solution page word counts from ~900 to 2,500+ with technical depth</div>
+          <div class="svc-spec-item">Fix double H1 on Solutions page; correct OG image dimensions; resolve sitemap.xml redirect</div>
+        </div>
+        <span class="svc-gap-tag">Closes Gap: Differentiated Messaging (Score 2)</span>
+      </div>
+
+      <!-- 3 -->
+      <div class="svc-card">
+        <div class="svc-icon">✍️</div>
+        <h3>Content Marketing</h3>
+        <p>A content cluster strategy that makes Seclore the definitive voice on Data Security Intelligence — with ARMOR, EDRM, and AI Discovery as the pillars and competitive differentiation woven throughout.</p>
+        <div class="svc-specifics">
+          <div class="svc-spec-item">Pillar pages for "Enterprise Data Security Intelligence," "What is EDRM," and "How to Protect Data in AI Environments"</div>
+          <div class="svc-spec-item">Rep-ready asset hub: persona talk tracks for CISO, compliance, data governance, and CIO linked to ARMOR proof points</div>
+          <div class="svc-spec-item">Competitive battlecards covering DSPM, DLP, CASB, and native Microsoft Purview positioning</div>
+          <div class="svc-spec-item">Weekly competitive brief tracking DSPM/DLP/EDRM category moves and partner program changes</div>
+        </div>
+        <span class="svc-gap-tag">Closes Gap: Enablement Asset Sprawl (Score 2)</span>
+      </div>
+
+      <!-- 4 -->
+      <div class="svc-card">
+        <div class="svc-icon">🗄️</div>
+        <h3>CRM Architecture & Data Hygiene</h3>
+        <p>Clean, structured CRM data is the foundation for every other investment — SDR outreach, partner co-sell, and paid channel targeting all degrade when account data is stale or unstructured.</p>
+        <div class="svc-specifics">
+          <div class="svc-spec-item">ICP account segmentation aligned to Seclore's four target verticals: Financial Services, Manufacturing, Semiconductor, Government</div>
+          <div class="svc-spec-item">Contact enrichment for CISO, data governance, compliance officer, and CIO personas</div>
+          <div class="svc-spec-item">Partner co-sell pipeline attribution — deal registration, distributor motions, referral tracking</div>
+          <div class="svc-spec-item">Forecast health indicators and pipeline risk flags tied to stakeholder changes and competitive signals</div>
+          <div class="svc-spec-item">CRM workflow design for the ARMOR platform sales motion across direct and channel</div>
+        </div>
+        <span class="svc-gap-tag">Closes Gap: Partner Co-Sell Complexity (Score 2)</span>
+      </div>
+
+      <!-- 5 -->
+      <div class="svc-card">
+        <div class="svc-icon">🏆</div>
+        <h3>Sales Execution Support</h3>
+        <p>Embedding Moreland expertise directly into Seclore's commercial motion — aligning ARMOR's "Discover → Context → Enforce → Prove" framework into a consistent, buyer-stage narrative across all sellers and partners.</p>
+        <div class="svc-specifics">
+          <div class="svc-spec-item">Account-specific "why ARMOR, why now" briefs connecting AI risk, compliance evidence, and data movement to Seclore capabilities</div>
+          <div class="svc-spec-item">Partner co-sell intelligence packs: target lists, ICP triggers, and talk tracks tuned to the North America distribution partner</div>
+          <div class="svc-spec-item">Pricing and packaging map per segment — simplifying ARMOR modules, Digital Asset Classification, Email Encryption, and APIs/SDKs into segment-specific offers</div>
+          <div class="svc-spec-item">Sales play adoption tracking and variance reduction across direct and channel reps</div>
+        </div>
+        <span class="svc-gap-tag">Closes Gap: Seller Research & Prep Burden (Score 2)</span>
+      </div>
+
+      <!-- 6 -->
+      <div class="svc-card">
+        <div class="svc-icon">📈</div>
+        <h3>Paid Channel Efficacy</h3>
+        <p>Precision-targeted paid media that reaches Seclore's buying committee — CISOs, data governance leads, compliance officers, and CIOs — at the exact moment their AI readiness or compliance urgency becomes a buying signal.</p>
+        <div class="svc-specifics">
+          <div class="svc-spec-item">LinkedIn ABM campaigns targeting Microsoft Purview customers, regulated-industry enterprises, and AI-active accounts</div>
+          <div class="svc-spec-item">Ad creative mapped to ARMOR's value proof: banking (1.5M+ PII documents protected), healthcare (Microsoft 365 / SharePoint workflow integration), semiconductor (CAD file IP protection)</div>
+          <div class="svc-spec-item">Retargeting sequences for Gartner Peer Insights and G2 visitors already evaluating the EDRM / rights management category</div>
+          <div class="svc-spec-item">Paid-to-organic attribution model tracking contribution to pipeline and ACV</div>
+        </div>
+        <span class="svc-gap-tag">Closes Gap: Segment Expansion Complexity (Score 2)</span>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- ── GEOGRAPHY ──────────────────────────────────────────────────── -->
+<section id="geography" class="section">
+  <div class="container">
+    <div style="margin-bottom:3rem;">
+      <div class="section-eyebrow"><span>Geographic Focus</span></div>
+      <h2 style="color:var(--white);margin-bottom:0.75rem;">North America first. Middle East supported.</h2>
+      <p style="color:rgba(255,255,255,0.55);max-width:40rem;">Two markets, two distinct motions. Moreland's engagement is structured to prioritize North America pipeline creation — where the distribution partnership creates an immediate multiplier — while providing the SDR and field-support infrastructure for the Middle East expansion.</p>
+    </div>
+
+    <div class="geo-grid">
+      <div class="geo-card geo-card-na">
+        <div class="geo-flag">🇺🇸</div>
+        <div class="geo-badge geo-badge-primary">Primary Market</div>
+        <h3>North America</h3>
+        <p>The November 2025 distribution partnership creates channel scale across MSPs and VARs. Moreland converts that reach into qualified pipeline through account intelligence, partner enablement, and ARMOR-specific demand generation in Seclore's four core verticals.</p>
+        <ul class="geo-list">
+          <li>Financial Services: banks, insurance, asset managers with GDPR, CMMC, and ITAR exposure</li>
+          <li>Manufacturing & Semiconductor: IP-sensitive firms protecting CAD, design files, and R&amp;D data via EDRM</li>
+          <li>Government: federal and defense contractors requiring CMMC compliance and audit-ready proof of data handling</li>
+          <li>Microsoft-centric enterprise: accounts running Purview, Sentinel, DLP, and CASB as ARMOR integration surface</li>
+          <li>Partner co-sell packs for the North America distributor and Partner Pulse Program registrants</li>
+        </ul>
+        <div class="geo-motion">
+          <strong>Primary motion:</strong> Inbound SEO/AEO · AI-supported SDR outreach · ABM paid media · Channel co-sell enablement · CRM data hygiene
+        </div>
+      </div>
+
+      <div class="geo-card geo-card-me">
+        <div class="geo-flag">🇸🇦</div>
+        <div class="geo-badge geo-badge-secondary">Secondary Market · SDR & AE Supported</div>
+        <h3>Middle East · GCC</h3>
+        <p>Seclore's February 2025 Saudi Arabia expansion and Secure 2030 initiative positions the company for government and enterprise demand in a high-growth data security market. The Middle East requires a dedicated, field-supported motion — not a copy-paste of the North America playbook.</p>
+        <ul class="geo-list">
+          <li>Saudi Arabia government and Vision 2030-aligned enterprises as primary targets under the Secure 2030 initiative</li>
+          <li>GCC financial services (banking, sovereign wealth funds) with acute data sovereignty requirements</li>
+          <li>Region-specific SDR sequences addressing Arabic-language compliance mandates and local regulatory frameworks</li>
+          <li>AE field support for enterprise deals requiring in-person engagement and regional partner co-sell</li>
+        </ul>
+        <div class="geo-motion" style="border-color:rgba(248,160,180,0.2);">
+          <strong>Primary motion:</strong> SDR outreach (region-specific) · AE field support · Government &amp; enterprise direct sales · Local partner enablement
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ── 90-DAY PLAN ────────────────────────────────────────────────── -->
+<section id="plan" class="section">
+  <div class="container">
+    <div class="plan-intro">
+      <div class="section-eyebrow"><span>Activation Roadmap</span></div>
+      <h2 style="margin-bottom:1rem;">From engagement to pipeline in 90 days</h2>
+      <p>A milestone-based plan anchored to ARMOR's commercial moment. Each phase builds on the last — establishing foundations in month one, activating pipeline in month two, and scaling what works in month three.</p>
+    </div>
+
+    <div class="plan-grid">
+      <div class="plan-phase plan-phase-1">
+        <div class="plan-phase-num">01</div>
+        <div class="plan-phase-label">Days 1–30 · Foundation</div>
+        <h3>ICP, triggers, and content architecture</h3>
+        <ul class="plan-tasks">
+          <li>Define ICP account list by vertical (Financial Services, Manufacturing, Semiconductor, Government) and map to the North America distributor's existing partner coverage</li>
+          <li>Build ARMOR-specific "why now" trigger library: AI deployment signals, Microsoft Purview rollouts, compliance deadlines, data breach incidents, third-party risk events</li>
+          <li>Audit and fix the top SEO/AEO gaps: double H1, missing FAQ schema, sitemap.xml redirect, llms.txt, OG image dimensions</li>
+          <li>CRM account data audit — enrich CISO, data governance, compliance officer, and CIO contacts across the ICP list</li>
+          <li>Launch weekly competitive signal brief covering DSPM, DLP, CASB, and Microsoft Purview native moves</li>
+        </ul>
+        <div class="plan-kpi">
+          <div class="plan-kpi-label">Month 1 Output</div>
+          <div class="plan-kpi-val">ICP account list · Trigger library · SEO/AEO fixes live · CRM baseline clean</div>
+        </div>
+      </div>
+
+      <div class="plan-phase plan-phase-2">
+        <div class="plan-phase-num">02</div>
+        <div class="plan-phase-label">Days 31–60 · Activation</div>
+        <h3>Outreach, content, and partner co-sell live</h3>
+        <ul class="plan-tasks">
+          <li>Launch AI-supported SDR sequences for the top 50 North America target accounts — persona-specific for CISO, data governance, compliance, and CIO buyers with ARMOR proof points from banking (1.5M+ PII docs), healthcare (10,000+ files/month), and semiconductor use cases</li>
+          <li>Publish ARMOR pillar page (2,500+ words), "What is Data Security Intelligence" guide, and "EDRM vs. DLP vs. DSPM" comparison with FAQ schema and HowTo markup</li>
+          <li>Deliver partner co-sell packs to North America distributor: ICP target lists, "why ARMOR, why now" one-pagers, and competitive talk tracks</li>
+          <li>Launch LinkedIn ABM campaigns targeting Purview-adjacent accounts and regulated-industry CISOs</li>
+          <li>Run two SDR enablement sessions on ARMOR talk tracks, the Discover → Context → Enforce → Prove framework, and objection handling vs. DLP/DSPM incumbents</li>
+        </ul>
+        <div class="plan-kpi">
+          <div class="plan-kpi-label">Month 2 Output</div>
+          <div class="plan-kpi-val">SDR sequences live · Pillar content published · Partner packs delivered · ABM campaigns active</div>
+        </div>
+      </div>
+
+      <div class="plan-phase plan-phase-3">
+        <div class="plan-phase-num">03</div>
+        <div class="plan-phase-label">Days 61–90 · Scale</div>
+        <h3>Measure, optimize, and expand to ME</h3>
+        <ul class="plan-tasks">
+          <li>Review meeting-set rate, pipeline created, and partner-qualified opportunities against the month-1 ICP baseline — calibrate trigger library and sequence cadence based on response data</li>
+          <li>Expand content cluster: add "How to Protect CAD Files from IP Theft," "AI Data Security for Financial Services," and "CMMC Compliance with EDRM" supporting pages</li>
+          <li>Launch Middle East SDR sequences for Saudi Arabia and GCC target accounts — government, banking, and sovereign wealth fund personas with Secure 2030 and data sovereignty framing</li>
+          <li>Deliver pricing and packaging map for ARMOR modules — simplifying the portfolio into segment-specific offers for Financial Services, Manufacturing, and Government</li>
+          <li>Quarterly competitive battlecard refresh and pipeline quality review with RevOps</li>
+        </ul>
+        <div class="plan-kpi">
+          <div class="plan-kpi-label">Month 3 Output</div>
+          <div class="plan-kpi-val">Pipeline review · ME outreach live · Content cluster expanded · Packaging map delivered</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ── WHY MORELAND ──────────────────────────────────────────────── -->
+<section id="why" class="section">
+  <div class="container">
+    <div class="why-grid">
+      <div class="why-left">
+        <div class="section-eyebrow"><span>The Moreland Model</span></div>
+        <h2>Fractional, embedded, and accountable to revenue — not vanity metrics</h2>
+        <p>Moreland Associates brings garage-to-IPO enterprise technology marketing experience into Seclore's team as a fractional partner. No agency overhead. No ramp time. Outcomes tied to pipeline creation, not impressions.</p>
+        <div class="proof-list">
+          <div class="proof-item">
+            <div class="proof-icon">⚡</div>
+            <div>
+              <h4>Embedded in days, not months</h4>
+              <p>Fractional engagement means Moreland is operating inside Seclore's GTM motion within the first week — aligned with CRO, CMO, and channel leadership from day one.</p>
+            </div>
+          </div>
+          <div class="proof-item">
+            <div class="proof-icon">🎯</div>
+            <div>
+              <h4>Tied to pipeline, not presentations</h4>
+              <p>Every engagement area is anchored to a specific commercial gap with a measurable outcome: meetings booked, partner-qualified pipeline, organic ranking improvements, or CRM data quality scores.</p>
+            </div>
+          </div>
+          <div class="proof-item">
+            <div class="proof-icon">🔄</div>
+            <div>
+              <h4>Purpose-built for category transitions</h4>
+              <p>Moreland's experience spans multiple enterprise SaaS category shifts — from product-centric to platform positioning, from direct to channel-first, from SMB to enterprise. The ARMOR transition is a familiar motion.</p>
+            </div>
+          </div>
+          <div class="proof-item">
+            <div class="proof-icon">🤝</div>
+            <div>
+              <h4>Aligned to what the CEO prefers</h4>
+              <p>Contract marketing services provide Seclore the flexibility and senior expertise that internal hiring cannot replicate at this stage — fully aligned with the leadership team's approach to scaling commercial capacity.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div>
+        <div class="why-stat-grid" style="margin-bottom:2rem;">
+          <div class="why-stat">
+            <div class="why-stat-num">4.04</div>
+            <div class="why-stat-label">Fit score across 12 commercial use cases — "Strong fit"</div>
+          </div>
+          <div class="why-stat">
+            <div class="why-stat-num">7</div>
+            <div class="why-stat-label">Commercial maturity gaps scored at 2/5 — all addressable in 90 days</div>
+          </div>
+          <div class="why-stat">
+            <div class="why-stat-num">5×</div>
+            <div class="why-stat-label">Use cases scored 5/5 — B2B Sales, Competitive Intel, Compliance, AI, IT Effectiveness</div>
+          </div>
+          <div class="why-stat">
+            <div class="why-stat-num">2</div>
+            <div class="why-stat-label">Priority markets with distinct motions — North America and Middle East</div>
+          </div>
+        </div>
+        <div class="assessment-callout">
+          <div class="callout-icon">🏢</div>
+          <div class="callout-text">
+            <h4>Built for where Seclore is right now</h4>
+            <p style="font-size:0.875rem;">The assessment notes Seclore as a strong use-case fit with below-$1B revenue — making contract marketing services a structurally superior model to full-time executive hiring. Moreland's fractional model delivers CRO-level marketing leadership and execution capacity without the fixed cost or ramp time of a full-time CMO upgrade.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ── STAKEHOLDERS ──────────────────────────────────────────────── -->
+<section id="stakeholders" class="section-sm">
+  <div class="container">
+    <div style="text-align:center;margin-bottom:2.5rem;">
+      <div class="section-eyebrow" style="display:inline-flex;"><span>Key Stakeholders</span></div>
+      <h2 style="margin-top:0.75rem;margin-bottom:0.75rem;">The leadership team we'll work with</h2>
+      <p style="max-width:36rem;margin:0 auto;">Moreland engages across the full commercial leadership structure — with Justin Enders as the primary sponsor and point of alignment.</p>
+    </div>
+    <div class="stakeholder-grid">
+      <div class="stk-card primary">
+        <div class="stk-avatar">JE</div>
+        <div class="stk-name">Justin Enders</div>
+        <div class="stk-title">Chief Revenue Officer · Seclore</div>
+        <div class="stk-angle">Primary engagement sponsor. Owns pipeline creation, seller productivity, partner co-sell, and North America market expansion. Moreland's core engagement KPIs are designed around CRO-level outcomes: meetings booked, partner-qualified pipeline, and win-rate lift.</div>
+        <span class="stk-primary-badge">Primary Sponsor</span>
+      </div>
+      <div class="stk-card">
+        <div class="stk-avatar">IR</div>
+        <div class="stk-name">Isaac Roybal</div>
+        <div class="stk-title">Chief Marketing Officer · Seclore</div>
+        <div class="stk-angle">Moreland operates as an extension of Isaac's team — not a replacement. We bring execution capacity for ARMOR messaging consistency, SEO/AEO architecture, content cluster development, and paid channel management that supplements internal marketing bandwidth.</div>
+      </div>
+      <div class="stk-card">
+        <div class="stk-avatar">VG</div>
+        <div class="stk-name">Vishal Gauri</div>
+        <div class="stk-title">Chief Executive Officer · Seclore</div>
+        <div class="stk-angle">CEO-level alignment on the fractional model. Gauri's prior North America P&amp;L ownership signals a preference for commercial accountability and measurable growth — values that are central to how Moreland structures and reports on every engagement.</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ── CTA ────────────────────────────────────────────────────────── -->
+<section id="cta">
+  <div class="cta-glow"></div>
+  <div class="container">
+    <div class="cta-inner">
+      <div class="section-eyebrow" style="display:inline-flex;margin-bottom:1.5rem;">
+        <span>Next Step</span>
+      </div>
+      <h2>Ready to turn ARMOR's launch into North America pipeline?</h2>
+      <p>A 30-minute conversation to align on the 90-day plan, confirm the engagement structure, and define what success looks like in the first 60 days.</p>
+      <div class="cta-actions">
+        <a href="mailto:hello@morelandassociates.com?subject=Seclore × Moreland — CRO Conversation&body=Hi, I'd like to discuss the fractional marketing engagement proposal." class="btn btn-primary">Book a 30-Minute Call →</a>
+        <a href="mailto:hello@morelandassociates.com" class="btn btn-outline-white">Email Moreland Directly</a>
+      </div>
+      <div class="cta-contact">
+        <a href="mailto:hello@morelandassociates.com">hello@morelandassociates.com</a> &nbsp;·&nbsp; San Francisco Bay Area &nbsp;·&nbsp; Serving clients globally
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ── FOOTER ─────────────────────────────────────────────────────── -->
+<footer>
+  <div class="footer-inner">
+    <div class="footer-brand">
+      <strong>Seclore × Moreland Associates</strong><br/>
+      Fractional Marketing Partnership Proposal · v2 · March 2026
+    </div>
+    <div class="footer-conf">
+      This proposal is confidential and prepared exclusively for Justin Enders, CRO, Seclore.
+      Assessment data sourced from publicly available information as of March 17, 2026.
+      Not for external distribution.
+    </div>
+  </div>
+</footer>
+
+</body>
+</html>
